@@ -2,7 +2,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using Pizza_Programm.Models;
 
-namespace Pizza_Programm.ViewModels
+
+.ViewModels
 {
     // Diese Klasse "verpackt" eine Zutat und fügt eine IsSelected-Eigenschaft
     // für die Checkboxen in der GUI hinzu.

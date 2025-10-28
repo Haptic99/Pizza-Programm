@@ -4,7 +4,8 @@ using Pizza_Programm.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Pizza_Programm.ViewModels
+
+.ViewModels
 {
     public partial class OrderCartItemViewModel : ObservableObject
     {

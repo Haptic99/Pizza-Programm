@@ -1,5 +1,6 @@
 ﻿// /Models/OrderStatus.cs
-namespace Pizza_Programm.Models
+
+.Models
 {
     public enum OrderStatus
     {

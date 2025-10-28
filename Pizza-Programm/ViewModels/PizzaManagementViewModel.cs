@@ -9,7 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Pizza_Programm.ViewModels
+
+.ViewModels
 {
     public partial class PizzaManagementViewModel : ObservableObject
     {

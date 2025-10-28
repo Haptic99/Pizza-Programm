@@ -5,7 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Pizza_Programm.Models
+
+.Models
 {
     public partial class Order : ObservableObject
     {

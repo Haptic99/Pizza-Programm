@@ -3,7 +3,8 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Pizza_Programm.Converters
+
+.Converters
 {
     public class NullToBooleanConverter : IValueConverter
     {

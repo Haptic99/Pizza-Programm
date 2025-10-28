@@ -3,7 +3,8 @@ using Pizza_Programm.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Pizza_Programm.Views
+
+.Views
 {
     public partial class PizzaManagementView : UserControl
     {

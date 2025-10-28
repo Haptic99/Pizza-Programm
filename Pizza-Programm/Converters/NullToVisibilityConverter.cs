@@ -4,7 +4,8 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Pizza_Programm.Converters
+
+.Converters
 {
     public class NullToVisibilityConverter : IValueConverter
     {

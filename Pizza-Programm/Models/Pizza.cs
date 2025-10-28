@@ -3,7 +3,10 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Pizza_Programm.Models;
 using System.Collections.Generic;
 
-namespace Pizza_Programm.Models
+
+
+
+.Models
 {
     public partial class Pizza : ObservableObject
     {

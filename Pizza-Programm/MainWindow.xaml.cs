@@ -9,7 +9,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Pizza_Programm
+
+
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

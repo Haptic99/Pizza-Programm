@@ -1,7 +1,8 @@
 ﻿// /Models/PizzaIngredient.cs
 using Pizza_Programm.Models;
 
-namespace Pizza_Programm.Models
+
+.Models
 {
     // Das ist eine "many-to-many" Verbindungstabelle.
     // Sie sagt, welche Zutat zu welcher Pizza gehört.
