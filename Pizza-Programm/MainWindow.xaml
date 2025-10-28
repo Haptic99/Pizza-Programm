@@ -14,11 +14,11 @@
             </TabItem>
 
             <TabItem Header="Pizzen verwalten">
-                <TextBlock Text="Hier Pizzen verwalten..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <views:PizzaManagementView/>
             </TabItem>
 
             <TabItem Header="Bestellungen (Kasse)">
-                <TextBlock Text="Hier Bestellungen aufnehmen..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <views:OrderView/>
             </TabItem>
 
             <TabItem Header="Offene Bestellungen (Küche)">
