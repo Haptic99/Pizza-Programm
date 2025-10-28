@@ -9,6 +9,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System; // NEU: Für Exception
 
 // KORRIGIERT: Namespace hinzugefügt
 namespace Pizza_Programm.ViewModels
@@ -80,38 +81,48 @@ namespace Pizza_Programm.ViewModels
         private bool CanRemoveFromCart() => SelectedCartItem != null;
 
 
+        // --- START ANPASSUNG ---
         [RelayCommand]
         private async Task SubmitOrderAsync()
         {
-            if (!Cart.Any())
+            try
             {
-                MessageBox.Show("Der Warenkorb ist leer.", "Hinweis");
-                return;
+                if (!Cart.Any())
+                {
+                    MessageBox.Show("Der Warenkorb ist leer.", "Hinweis");
+                    return;
+                }
+
+                var order = new Order
+                {
+                    OrderTime = System.DateTime.Now,
+                    Status = OrderStatus.Pending,
+                    CustomerNote = this.CustomerNote,
+                    TotalPrice = this.TotalPrice
+                };
+
+                foreach (var cartItem in Cart)
+                {
+                    order.OrderItems.Add(cartItem.CreateOrderItemModel());
+                }
+
+                using (var context = new PizzaDbContext())
+                {
+                    context.Orders.Add(order);
+                    await context.SaveChangesAsync(); // Hier passiert der Fehler wahrscheinlich
+                }
+
+                Cart.Clear();
+                CustomerNote = string.Empty;
+
+                MessageBox.Show("Bestellung wurde aufgenommen und an die Küche gesendet!", "Erfolg");
             }
-
-            var order = new Order
+            catch (Exception ex)
             {
-                OrderTime = System.DateTime.Now,
-                Status = OrderStatus.Pending,
-                CustomerNote = this.CustomerNote,
-                TotalPrice = this.TotalPrice
-            };
-
-            foreach (var cartItem in Cart)
-            {
-                order.OrderItems.Add(cartItem.CreateOrderItemModel());
+                // Zeigt JEDEN Fehler an, der auftritt
+                MessageBox.Show($"Fehler beim Speichern der Bestellung:\n\n{ex.Message}\n\n{ex.InnerException?.Message}", "Datenbankfehler");
             }
-
-            using (var context = new PizzaDbContext())
-            {
-                context.Orders.Add(order);
-                await context.SaveChangesAsync();
-            }
-
-            Cart.Clear();
-            CustomerNote = string.Empty;
-
-            MessageBox.Show("Bestellung wurde aufgenommen und an die Küche gesendet!", "Erfolg");
         }
+        // --- ENDE ANPASSUNG ---
     }
 }
