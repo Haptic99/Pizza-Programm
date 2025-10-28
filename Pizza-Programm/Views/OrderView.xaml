@@ -69,7 +69,7 @@
                          FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"/>
 
                 <Button Content="Bestellung abschicken" 
-                        Command="{Binding SubmitOrderAsyncCommand}" 
+                        Command="{Binding SubmitOrderCommand}"
                         Background="LightGreen" Height="40" Margin="0,10,0,0"/>
             </StackPanel>
         </Border>
