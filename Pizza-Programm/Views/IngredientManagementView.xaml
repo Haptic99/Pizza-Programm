@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="DeinPizzaShopProjekt.Views.IngredientManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DeinPizzaShopProjekt.Views"
+             xmlns:vm="clr-namespace:DeinPizzaShopProjekt.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <vm:IngredientManagementViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Loaded>
+        <Binding Path="LoadIngredientsCommand" Mode="OneWay"/>
+    </UserControl.Loaded>
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+            <Label Content="Neue Zutat:"/>
+            <TextBox Text="{Binding NewIngredientName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+            <Button Content="Hinzufügen" Command="{Binding AddIngredientCommand}" Margin="0,0,0,20"/>
+
+            <Button Content="Auswahl löschen" Command="{Binding DeleteIngredientCommand}" Background="Tomato"/>
+        </StackPanel>
+
+        <ListView Grid.Column="1" 
+                  ItemsSource="{Binding Ingredients}"
+                  SelectedItem="{Binding SelectedIngredient}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="50"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="200"/>
+                    <GridViewColumn Header="Lager" DisplayMemberBinding="{Binding StockLevel}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

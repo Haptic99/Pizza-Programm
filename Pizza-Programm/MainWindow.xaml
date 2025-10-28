@@ -1,0 +1,29 @@
+﻿<Window x:Class="DeinPizzaShopProjekt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeinPizzaShopProjekt"
+        xmlns:views="clr-namespace:DeinPizzaShopProjekt.Views"
+        mc:Ignorable="d"
+        Title="Pizza-Shop Management" Height="600" Width="900">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Zutaten verwalten">
+                <views:IngredientManagementView/>
+            </TabItem>
+
+            <TabItem Header="Pizzen verwalten">
+                <TextBlock Text="Hier Pizzen verwalten..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </TabItem>
+
+            <TabItem Header="Bestellungen (Kasse)">
+                <TextBlock Text="Hier Bestellungen aufnehmen..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </TabItem>
+
+            <TabItem Header="Offene Bestellungen (Küche)">
+                <TextBlock Text="Hier Warteschlange anzeigen..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
