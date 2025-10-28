@@ -28,7 +28,7 @@ namespace Pizza_Programm.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // --- Bestehender Code ---
+            // --- Bestehender Code (Relationen) ---
             modelBuilder.Entity<PizzaIngredient>()
                 .HasKey(pi => new { pi.PizzaId, pi.IngredientId });
 
@@ -42,17 +42,18 @@ namespace Pizza_Programm.Data
                 .WithMany()
                 .HasForeignKey(pi => pi.IngredientId);
 
-            // --- NEU ---
-            // Speichert die Enum (Pending, Completed) als Text in der Datenbank
+            // --- NEU (Relationen) ---
             modelBuilder.Entity<Order>()
                 .Property(o => o.Status)
                 .HasConversion<string>();
 
-            // Definiert die 1-zu-N-Beziehung (1 Order hat N OrderItems)
             modelBuilder.Entity<Order>()
                 .HasMany(o => o.OrderItems)
                 .WithOne(oi => oi.Order)
                 .HasForeignKey(oi => oi.OrderId);
+
+            // --- AUFGERÄUMT: Seed-Logik wird ausgelagert ---
+            DataSeeder.Seed(modelBuilder);
         }
     }
 }
