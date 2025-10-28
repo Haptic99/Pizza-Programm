@@ -12,10 +12,6 @@
         <vm:IngredientManagementViewModel/>
     </UserControl.DataContext>
 
-    <UserControl.Loaded>
-        <Binding Path="LoadIngredientsCommand" Mode="OneWay"/>
-    </UserControl.Loaded>
-
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
