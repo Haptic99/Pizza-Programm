@@ -1,6 +1,6 @@
 ﻿// /Models/Pizza.cs
 using CommunityToolkit.Mvvm.ComponentModel;
-using DeinPizzaShopProjekt.Models;
+using Pizza_Programm.Models;
 using System.Collections.Generic;
 
 namespace Pizza_Programm.Models

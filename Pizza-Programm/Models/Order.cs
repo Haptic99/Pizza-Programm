@@ -1,6 +1,6 @@
 ﻿// /Models/Order.cs
 using CommunityToolkit.Mvvm.ComponentModel;
-using DeinPizzaShopProjekt.Models;
+using Pizza_Programm.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
