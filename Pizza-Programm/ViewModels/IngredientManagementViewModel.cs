@@ -1,13 +1,13 @@
 ﻿// /ViewModels/IngredientManagementViewModel.cs
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DeinPizzaShopProjekt.Data;
-using DeinPizzaShopProjekt.Models;
+using Pizza_Programm.Data;
+using Pizza_Programm.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace DeinPizzaShopProjekt.ViewModels
+namespace Pizza_Programm.ViewModels
 {
     // partial, da der CommunityToolkit Code (z.B. Commands) generiert
     public partial class IngredientManagementViewModel : ObservableObject
@@ -15,16 +15,12 @@ namespace DeinPizzaShopProjekt.ViewModels
         // Eine spezielle Liste, die die GUI automatisch über Änderungen informiert
         public ObservableCollection<Ingredient> Ingredients { get; } = new();
 
-        // [ObservableProperty] erstellt automatisch den Property-Code für _newIngredientName
-        // und benachrichtigt die GUI bei Änderung (INotifyPropertyChanged).
         [ObservableProperty]
         private string _newIngredientName;
 
         [ObservableProperty]
         private Ingredient _selectedIngredient;
 
-        // [RelayCommand] erstellt automatisch einen ICommand (z.B. AddIngredientCommand),
-        // den wir im XAML an einen Button binden können.
         [RelayCommand]
         private async Task LoadIngredientsAsync()
         {
@@ -68,8 +64,6 @@ namespace DeinPizzaShopProjekt.ViewModels
 
             using (var context = new PizzaDbContext())
             {
-                // Wir müssen das Objekt zuerst "anfügen" (attach), damit EF Core weiß,
-                // welches Objekt in der DB gelöscht werden soll.
                 context.Ingredients.Attach(SelectedIngredient);
                 context.Ingredients.Remove(SelectedIngredient);
                 await context.SaveChangesAsync();

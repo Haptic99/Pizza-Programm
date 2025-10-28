@@ -1,8 +1,8 @@
 ﻿// /ViewModels/OrderViewModel.cs
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DeinPizzaShopProjekt.Data;
-using DeinPizzaShopProjekt.Models;
+using Pizza_Programm.Data;
+using Pizza_Programm.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -10,14 +10,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DeinPizzaShopProjekt.ViewModels
+namespace Pizza_Programm.ViewModels
 {
     public partial class OrderViewModel : ObservableObject
     {
-        // Spalte 1: Das Menü
         public ObservableCollection<Pizza> Menu { get; } = new();
-
-        // Spalte 2: Der Warenkorb
         public ObservableCollection<OrderCartItemViewModel> Cart { get; } = new();
 
         [ObservableProperty]
@@ -36,8 +33,6 @@ namespace DeinPizzaShopProjekt.ViewModels
 
         public OrderViewModel()
         {
-            // Wir beobachten den Warenkorb. Wenn Pizzen hinzugefügt oder
-            // entfernt werden, berechnen wir den Gesamtpreis neu.
             Cart.CollectionChanged += (s, e) => UpdateTotalPrice();
         }
 
@@ -56,9 +51,6 @@ namespace DeinPizzaShopProjekt.ViewModels
             {
                 await context.Database.EnsureCreatedAsync();
 
-                // Lade alle Pizzen, UND ihre Zutaten-Beziehungen,
-                // UND die Zutat-Details selbst.
-                // Das ist wichtig für die Anpassungs-Checkliste!
                 var pizzas = await context.Pizzas
                     .Include(p => p.PizzaIngredients)
                         .ThenInclude(pi => pi.Ingredient)
@@ -74,7 +66,6 @@ namespace DeinPizzaShopProjekt.ViewModels
         [RelayCommand(CanExecute = nameof(CanAddToCart))]
         private void AddToCart()
         {
-            // Wir erstellen unseren "Wrapper" für den Warenkorb
             var cartItem = new OrderCartItemViewModel(SelectedPizzaFromMenu);
             Cart.Add(cartItem);
         }
@@ -97,30 +88,25 @@ namespace DeinPizzaShopProjekt.ViewModels
                 return;
             }
 
-            // 1. Erstelle das Haupt-Bestellobjekt
             var order = new Order
             {
-                OrderTime = DateTime.Now,
-                Status = OrderStatus.Pending, // "Offen" für die Küche
+                OrderTime = System.DateTime.Now,
+                Status = OrderStatus.Pending,
                 CustomerNote = this.CustomerNote,
                 TotalPrice = this.TotalPrice
             };
 
-            // 2. Wandle jeden "Warenkorb-Wrapper" in einen
-            //    echten "OrderItem" (Datenbank-Objekt) um.
             foreach (var cartItem in Cart)
             {
                 order.OrderItems.Add(cartItem.CreateOrderItemModel());
             }
 
-            // 3. Speichere alles in der Datenbank
             using (var context = new PizzaDbContext())
             {
                 context.Orders.Add(order);
                 await context.SaveChangesAsync();
             }
 
-            // 4. GUI aufräumen
             Cart.Clear();
             CustomerNote = string.Empty;
 

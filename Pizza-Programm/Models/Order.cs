@@ -1,10 +1,11 @@
 ﻿// /Models/Order.cs
 using CommunityToolkit.Mvvm.ComponentModel;
+using DeinPizzaShopProjekt.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DeinPizzaShopProjekt.Models
+namespace Pizza_Programm.Models
 {
     public partial class Order : ObservableObject
     {

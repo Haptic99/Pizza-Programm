@@ -1,8 +1,8 @@
 ﻿// /ViewModels/IngredientSelection.cs
 using CommunityToolkit.Mvvm.ComponentModel;
-using DeinPizzaShopProjekt.Models;
+using Pizza_Programm.Models;
 
-namespace DeinPizzaShopProjekt.ViewModels
+namespace Pizza_Programm.ViewModels
 {
     // Diese Klasse "verpackt" eine Zutat und fügt eine IsSelected-Eigenschaft
     // für die Checkboxen in der GUI hinzu.

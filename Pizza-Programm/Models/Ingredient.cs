@@ -1,7 +1,7 @@
 ﻿// /Models/Ingredient.cs
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace DeinPizzaShopProjekt.Models
+namespace Pizza_Programm.Models
 {
     // Wir erben von ObservableObject, damit die GUI auf Änderungen reagieren kann
     // (z.B. wenn sich der Lagerbestand ändert)

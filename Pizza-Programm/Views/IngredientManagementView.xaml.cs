@@ -1,9 +1,9 @@
 ﻿// /Views/IngredientManagementView.xaml.cs
-using DeinPizzaShopProjekt.ViewModels;
+using Pizza_Programm.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DeinPizzaShopProjekt.Views
+namespace Pizza_Programm.Views
 {
     public partial class IngredientManagementView : UserControl
     {
@@ -11,17 +11,13 @@ namespace DeinPizzaShopProjekt.Views
         {
             InitializeComponent();
 
-            // Wir müssen dem Loaded-Event manuell sagen, 
-            // dass es asynchron ausgeführt werden soll.
             this.Loaded += OnLoaded;
         }
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            // Sicherstellen, dass der DataContext vorhanden ist
             if (DataContext is IngredientManagementViewModel viewModel)
             {
-                // Den Lade-Befehl im ViewModel asynchron aufrufen
                 if (viewModel.LoadIngredientsCommand.CanExecute(null))
                 {
                     await viewModel.LoadIngredientsCommand.ExecuteAsync(null);

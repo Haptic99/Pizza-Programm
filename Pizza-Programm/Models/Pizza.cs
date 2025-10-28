@@ -1,8 +1,9 @@
 ﻿// /Models/Pizza.cs
 using CommunityToolkit.Mvvm.ComponentModel;
+using DeinPizzaShopProjekt.Models;
 using System.Collections.Generic;
 
-namespace DeinPizzaShopProjekt.Models
+namespace Pizza_Programm.Models
 {
     public partial class Pizza : ObservableObject
     {

@@ -1,9 +1,9 @@
 ﻿// /Views/PizzaManagementView.xaml.cs
-using DeinPizzaShopProjekt.ViewModels;
+using Pizza_Programm.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DeinPizzaShopProjekt.Views
+namespace Pizza_Programm.Views
 {
     public partial class PizzaManagementView : UserControl
     {
@@ -15,8 +15,6 @@ namespace DeinPizzaShopProjekt.Views
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            // Wir müssen das Laden der Daten manuell anstoßen,
-            // da der 'Loaded'-Event selbst nicht async-fähig ist.
             if (DataContext is PizzaManagementViewModel viewModel)
             {
                 if (viewModel.LoadDataCommand.CanExecute(null))

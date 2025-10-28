@@ -1,8 +1,8 @@
 ﻿// /Data/PizzaDbContext.cs
-using DeinPizzaShopProjekt.Models;
+using Pizza_Programm.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DeinPizzaShopProjekt.Data
+namespace Pizza_Programm.Data
 {
     public class PizzaDbContext : DbContext
     {

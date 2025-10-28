@@ -1,5 +1,5 @@
 ﻿// /Models/OrderStatus.cs
-namespace DeinPizzaShopProjekt.Models
+namespace Pizza_Programm.Models
 {
     public enum OrderStatus
     {

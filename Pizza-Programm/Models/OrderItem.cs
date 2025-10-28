@@ -1,7 +1,7 @@
 ﻿// /Models/OrderItem.cs
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace DeinPizzaShopProjekt.Models
+namespace Pizza_Programm.Models
 {
     // Dies ist ein Schnappschuss einer Pizza zum Zeitpunkt der Bestellung.
     public partial class OrderItem : ObservableObject

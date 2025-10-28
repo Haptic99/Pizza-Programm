@@ -1,9 +1,9 @@
 ﻿// /Views/OrderView.xaml.cs
-using DeinPizzaShopProjekt.ViewModels;
+using Pizza_Programm.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DeinPizzaShopProjekt.Views
+namespace Pizza_Programm.Views
 {
     public partial class OrderView : UserControl
     {

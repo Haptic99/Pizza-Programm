@@ -1,15 +1,15 @@
 ﻿// /ViewModels/PizzaManagementViewModel.cs
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DeinPizzaShopProjekt.Data;
-using DeinPizzaShopProjekt.Models;
+using Pizza_Programm.Data;
+using Pizza_Programm.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DeinPizzaShopProjekt.ViewModels
+namespace Pizza_Programm.ViewModels
 {
     public partial class PizzaManagementViewModel : ObservableObject
     {
@@ -30,9 +30,6 @@ namespace DeinPizzaShopProjekt.ViewModels
         [NotifyCanExecuteChangedFor(nameof(SavePizzaIngredientsCommand))]
         private Pizza _selectedPizza;
 
-        // Diese Methode wird automatisch aufgerufen, wenn sich 'SelectedPizza' ändert.
-        // (Dank 'OnChanged' in einem [ObservableProperty]-Attribut, das wir gleich hinzufügen)
-        // Wir aktualisieren hier die Checkbox-Liste der Zutaten.
         partial void OnSelectedPizzaChanged(Pizza value)
         {
             UpdateIngredientSelection();
@@ -42,7 +39,6 @@ namespace DeinPizzaShopProjekt.ViewModels
         {
             if (SelectedPizza == null)
             {
-                // Wenn keine Pizza gewählt ist, alle Checkboxen deaktivieren
                 foreach (var selection in IngredientSelections)
                 {
                     selection.IsSelected = false;
@@ -50,20 +46,16 @@ namespace DeinPizzaShopProjekt.ViewModels
             }
             else
             {
-                // IDs der Zutaten, die zur gewählten Pizza gehören
                 var pizzaIngredientIds = new HashSet<int>(
                     SelectedPizza.PizzaIngredients.Select(pi => pi.IngredientId)
                 );
 
-                // Checkbox-Liste aktualisieren
                 foreach (var selection in IngredientSelections)
                 {
                     selection.IsSelected = pizzaIngredientIds.Contains(selection.Ingredient.Id);
                 }
             }
         }
-
-        // --- COMMANDS ---
 
         [RelayCommand]
         private async Task LoadDataAsync()
@@ -75,9 +67,8 @@ namespace DeinPizzaShopProjekt.ViewModels
             {
                 await context.Database.EnsureCreatedAsync();
 
-                // 1. Alle Pizzen laden, INKLUSIVE ihrer Zutaten-Beziehungen
                 var pizzasFromDb = await context.Pizzas
-                    .Include(p => p.PizzaIngredients) // WICHTIG: Zutaten mitladen!
+                    .Include(p => p.PizzaIngredients)
                     .ToListAsync();
 
                 foreach (var pizza in pizzasFromDb)
@@ -85,7 +76,6 @@ namespace DeinPizzaShopProjekt.ViewModels
                     Pizzas.Add(pizza);
                 }
 
-                // 2. Alle verfügbaren Zutaten laden (für die Checkliste)
                 var allIngredients = await context.Ingredients.ToListAsync();
                 foreach (var ingredient in allIngredients)
                 {
@@ -121,7 +111,6 @@ namespace DeinPizzaShopProjekt.ViewModels
         {
             if (SelectedPizza == null) return;
 
-            // Sicherheitsabfrage
             var result = MessageBox.Show($"Soll die Pizza '{SelectedPizza.Name}' wirklich gelöscht werden?",
                 "Löschen bestätigen", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
@@ -147,18 +136,14 @@ namespace DeinPizzaShopProjekt.ViewModels
 
             using (var context = new PizzaDbContext())
             {
-                // Die Pizza aus der DB holen (oder anfügen), um sicherzustellen, 
-                // dass wir mit der DB-Version arbeiten.
                 var pizzaFromDb = await context.Pizzas
                     .Include(p => p.PizzaIngredients)
                     .FirstOrDefaultAsync(p => p.Id == SelectedPizza.Id);
 
                 if (pizzaFromDb == null) return;
 
-                // Bestehende Zutaten-Verknüpfungen löschen
                 pizzaFromDb.PizzaIngredients.Clear();
 
-                // Neue Verknüpfungen basierend auf den Checkboxen hinzufügen
                 foreach (var selection in IngredientSelections)
                 {
                     if (selection.IsSelected)
@@ -172,13 +157,7 @@ namespace DeinPizzaShopProjekt.ViewModels
                 }
 
                 await context.SaveChangesAsync();
-
-                // WICHTIG: Das lokale 'SelectedPizza'-Objekt muss auch die neuen 
-                // Verknüpfungen kennen, sonst ist die GUI asynchron zur DB.
                 SelectedPizza.PizzaIngredients = pizzaFromDb.PizzaIngredients;
-
-                // Da wir die Collection direkt manipuliert haben,
-                // rufen wir OnSelectedPizzaChanged manuell auf (gute Praxis).
                 OnSelectedPizzaChanged(SelectedPizza);
             }
 
