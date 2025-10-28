@@ -3,8 +3,8 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-
-.Converters
+// KORRIGIERT: Namespace hinzugefügt
+namespace Pizza_Programm.Converters
 {
     public class NullToBooleanConverter : IValueConverter
     {

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
+// KORRIGIERT: Namespace war bereits korrekt
 namespace Pizza_Programm.ViewModels
 {
     // partial, da der CommunityToolkit Code (z.B. Commands) generiert

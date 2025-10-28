@@ -9,8 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-
-.ViewModels
+// KORRIGIERT: Namespace hinzugefügt
+namespace Pizza_Programm.ViewModels
 {
     public partial class PizzaManagementViewModel : ObservableObject
     {

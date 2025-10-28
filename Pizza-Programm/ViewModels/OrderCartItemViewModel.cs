@@ -4,8 +4,8 @@ using Pizza_Programm.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-
-.ViewModels
+// KORRIGIERT: Namespace hinzugefügt
+namespace Pizza_Programm.ViewModels
 {
     public partial class OrderCartItemViewModel : ObservableObject
     {

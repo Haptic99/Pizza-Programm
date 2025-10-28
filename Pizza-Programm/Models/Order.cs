@@ -5,8 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-
-.Models
+// KORRIGIERT: Namespace hinzugefügt
+namespace Pizza_Programm.Models
 {
     public partial class Order : ObservableObject
     {

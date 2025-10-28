@@ -3,10 +3,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Pizza_Programm.Models;
 using System.Collections.Generic;
 
-
-
-
-.Models
+// KORRIGIERT: Namespace hinzugefügt
+namespace Pizza_Programm.Models
 {
     public partial class Pizza : ObservableObject
     {

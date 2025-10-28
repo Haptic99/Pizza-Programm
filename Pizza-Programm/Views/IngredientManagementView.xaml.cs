@@ -3,8 +3,8 @@ using Pizza_Programm.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
-
-.Views
+// KORRIGIERT: Namespace hinzugefügt
+namespace Pizza_Programm.Views
 {
     public partial class IngredientManagementView : UserControl
     {

@@ -2,8 +2,8 @@
 using Pizza_Programm.Models;
 using Microsoft.EntityFrameworkCore;
 
-
-.Data
+// KORRIGIERT: Namespace hinzugefügt
+namespace Pizza_Programm.Data
 {
     public class PizzaDbContext : DbContext
     {

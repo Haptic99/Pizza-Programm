@@ -1,6 +1,7 @@
 ﻿// /Models/OrderStatus.cs
 
-.Models
+// KORRIGIERT: Namespace hinzugefügt
+namespace Pizza_Programm.Models
 {
     public enum OrderStatus
     {
