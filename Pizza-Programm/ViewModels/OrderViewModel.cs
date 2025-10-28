@@ -49,7 +49,7 @@ namespace Pizza_Programm.ViewModels
 
             using (var context = new PizzaDbContext())
             {
-                // WICHTIG: Datenbank erstellen falls nicht vorhanden
+                // IMPORTANT: Create database if not present
                 await context.Database.EnsureCreatedAsync();
 
                 var pizzas = await context.Pizzas
@@ -82,21 +82,21 @@ namespace Pizza_Programm.ViewModels
         [RelayCommand]
         private async Task SubmitOrderAsync()
         {
-            // SOFORTIGE Bestätigung, dass die Methode aufgerufen wird
-            MessageBox.Show("SubmitOrderAsync wurde aufgerufen!", "Debug", MessageBoxButton.OK, MessageBoxImage.Information);
+            // IMMEDIATE confirmation that the method is called
+            MessageBox.Show("SubmitOrderAsync was called!", "Debug", MessageBoxButton.OK, MessageBoxImage.Information);
 
             try
             {
-                // Debug-Ausgabe
-                System.Diagnostics.Debug.WriteLine("SubmitOrderAsync wurde aufgerufen");
+                // Debug output
+                System.Diagnostics.Debug.WriteLine("SubmitOrderAsync was called");
 
                 if (!Cart.Any())
                 {
-                    MessageBox.Show("Der Warenkorb ist leer.", "Hinweis", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("The cart is empty.", "Note", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
                 }
 
-                // Bestellung erstellen
+                // Create order
                 var order = new Order
                 {
                     OrderTime = DateTime.Now,
@@ -105,47 +105,47 @@ namespace Pizza_Programm.ViewModels
                     TotalPrice = this.TotalPrice
                 };
 
-                // OrderItems hinzufügen
+                // Add OrderItems
                 foreach (var cartItem in Cart)
                 {
                     var orderItem = cartItem.CreateOrderItemModel();
                     order.OrderItems.Add(orderItem);
                 }
 
-                // In Datenbank speichern
+                // Save to database
                 using (var context = new PizzaDbContext())
                 {
-                    // Sicherstellen, dass DB existiert
+                    // Ensure DB exists
                     await context.Database.EnsureCreatedAsync();
 
                     context.Orders.Add(order);
 
-                    System.Diagnostics.Debug.WriteLine($"Speichere Bestellung mit {order.OrderItems.Count} Items");
+                    System.Diagnostics.Debug.WriteLine($"Saving order with {order.OrderItems.Count} items");
 
                     await context.SaveChangesAsync();
 
-                    System.Diagnostics.Debug.WriteLine("Bestellung erfolgreich gespeichert");
+                    System.Diagnostics.Debug.WriteLine("Order saved successfully");
                 }
 
-                // Warenkorb leeren
+                // Clear cart
                 Cart.Clear();
                 CustomerNote = string.Empty;
 
                 MessageBox.Show(
-                    $"Bestellung #{order.Id} wurde aufgenommen!\n\n" +
-                    $"Anzahl Pizzen: {order.OrderItems.Count}\n" +
-                    $"Gesamtpreis: {order.TotalPrice:C}\n\n" +
-                    "Die Küche wurde benachrichtigt.",
-                    "Erfolg",
+                    $"Order #{order.Id} has been submitted!\n\n" +
+                    $"Number of pizzas: {order.OrderItems.Count}\n" +
+                    $"Total price: {order.TotalPrice:C}\n\n" +
+                    "The kitchen has been notified.",
+                    "Success",
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
             }
             catch (DbUpdateException dbEx)
             {
-                var innerMessage = dbEx.InnerException?.Message ?? "Keine Details verfügbar";
+                var innerMessage = dbEx.InnerException?.Message ?? "No details available";
                 MessageBox.Show(
-                    $"Datenbankfehler beim Speichern:\n\n{dbEx.Message}\n\nDetails:\n{innerMessage}",
-                    "Datenbankfehler",
+                    $"Database error while saving:\n\n{dbEx.Message}\n\nDetails:\n{innerMessage}",
+                    "Database Error",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
 
@@ -154,8 +154,8 @@ namespace Pizza_Programm.ViewModels
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    $"Unerwarteter Fehler:\n\n{ex.Message}\n\nTyp: {ex.GetType().Name}\n\nStackTrace:\n{ex.StackTrace}",
-                    "Fehler",
+                    $"Unexpected error:\n\n{ex.Message}\n\nType: {ex.GetType().Name}\n\nStackTrace:\n{ex.StackTrace}",
+                    "Error",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
 

@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Pizza_Programm.Models;
 using System.Collections.Generic;
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.Models
 {
     public partial class Pizza : ObservableObject
@@ -17,7 +17,7 @@ namespace Pizza_Programm.Models
         [ObservableProperty]
         private decimal _price;
 
-        // Jede Pizza hat eine Liste von Zutaten
+        // Every pizza has a list of ingredients
         [ObservableProperty]
         private ICollection<PizzaIngredient> _pizzaIngredients = new List<PizzaIngredient>();
     }

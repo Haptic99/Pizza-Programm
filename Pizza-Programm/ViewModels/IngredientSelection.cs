@@ -2,11 +2,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using Pizza_Programm.Models;
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.ViewModels
 {
-    // Diese Klasse "verpackt" eine Zutat und fügt eine IsSelected-Eigenschaft
-    // für die Checkboxen in der GUI hinzu.
+    // This class "wraps" an ingredient and adds an IsSelected property
+    // for the checkboxes in the GUI.
     public partial class IngredientSelection : ObservableObject
     {
         [ObservableProperty]

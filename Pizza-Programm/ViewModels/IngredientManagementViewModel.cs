@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-// KORRIGIERT: Namespace war bereits korrekt
+// CORRECTED: Namespace was already correct
 namespace Pizza_Programm.ViewModels
 {
-    // partial, da der CommunityToolkit Code (z.B. Commands) generiert
+    // partial, because the CommunityToolkit generates code (e.g., Commands)
     public partial class IngredientManagementViewModel : ObservableObject
     {
-        // Eine spezielle Liste, die die GUI automatisch über Änderungen informiert
+        // A special list that automatically informs the GUI about changes
         public ObservableCollection<Ingredient> Ingredients { get; } = new();
 
         [ObservableProperty]
@@ -28,7 +28,7 @@ namespace Pizza_Programm.ViewModels
             Ingredients.Clear();
             using (var context = new PizzaDbContext())
             {
-                // Datenbank erstellen, falls sie nicht existiert
+                // Create database if it doesn't exist
                 await context.Database.EnsureCreatedAsync();
 
                 var ingredientsFromDb = await context.Ingredients.ToListAsync();
@@ -53,8 +53,8 @@ namespace Pizza_Programm.ViewModels
                 await context.SaveChangesAsync();
             }
 
-            Ingredients.Add(newIngredient); // Zur Liste in der GUI hinzufügen
-            NewIngredientName = string.Empty; // Textbox leeren
+            Ingredients.Add(newIngredient); // Add to the list in the GUI
+            NewIngredientName = string.Empty; // Clear textbox
         }
 
         [RelayCommand]
@@ -70,7 +70,7 @@ namespace Pizza_Programm.ViewModels
                 await context.SaveChangesAsync();
             }
 
-            Ingredients.Remove(SelectedIngredient); // Aus der GUI-Liste entfernen
+            Ingredients.Remove(SelectedIngredient); // Remove from the GUI list
         }
     }
 }

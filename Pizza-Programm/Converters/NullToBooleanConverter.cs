@@ -3,14 +3,14 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.Converters
 {
     public class NullToBooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // Wenn der Wert NICHT null ist, return true (Button ist Enabled)
+            // If the value is NOT null, return true (Button is Enabled)
             return value != null;
         }
 

@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.Converters
 {
     public class NullToVisibilityConverter : IValueConverter

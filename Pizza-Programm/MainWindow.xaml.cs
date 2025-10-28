@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-// KORRIGIERT: Fehlender Namespace wurde hinzugefügt
+// CORRECTED: Missing namespace was added
 namespace Pizza_Programm
 {
     /// <summary>

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.Models
 {
     public partial class Order : ObservableObject
@@ -14,10 +14,10 @@ namespace Pizza_Programm.Models
         private int _id;
 
         [ObservableProperty]
-        private DateTime _orderTime; // Wann wurde bestellt?
+        private DateTime _orderTime; // When was it ordered?
 
         [ObservableProperty]
-        private string _customerNote; // Bemerkung für die ganze Bestellung
+        private string _customerNote; // Note for the entire order
 
         [ObservableProperty]
         private decimal _totalPrice;

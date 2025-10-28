@@ -6,16 +6,16 @@ namespace Pizza_Programm.Data
 {
     public static class DataSeeder
     {
-        // Haupt-Seed-Methode, die vom DbContext aufgerufen wird
+        // Main seed method, called by the DbContext
         public static void Seed(ModelBuilder modelBuilder)
         {
-            // 1. Zuerst die Zutaten erstellen
+            // 1. First, create the ingredients
             SeedIngredients(modelBuilder);
 
-            // 2. Dann die Pizzen erstellen
+            // 2. Then, create the pizzas
             SeedPizzas(modelBuilder);
 
-            // 3. Zuletzt die Pizzen mit den Zutaten verknüpfen
+            // 3. Finally, link the pizzas with the ingredients
             SeedPizzaIngredients(modelBuilder);
         }
 
@@ -60,23 +60,23 @@ namespace Pizza_Programm.Data
         private static void SeedPizzas(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pizza>().HasData(
-                new Pizza { Id = 1, Name = "Diavola", Price = 9.50m },
-                new Pizza { Id = 2, Name = "Hawaii", Price = 9.50m },
-                new Pizza { Id = 3, Name = "Margherita", Price = 8.00m },
-                new Pizza { Id = 4, Name = "Mexican Hawaii", Price = 10.50m },
-                new Pizza { Id = 5, Name = "Mexican Pepperoni", Price = 10.50m },
-                new Pizza { Id = 6, Name = "Napoli", Price = 9.00m },
-                new Pizza { Id = 7, Name = "Nutella Banana", Price = 7.50m },
-                new Pizza { Id = 8, Name = "Nutella Strawberry", Price = 7.50m },
-                new Pizza { Id = 9, Name = "Parma Ham & Rocket", Price = 11.50m },
-                new Pizza { Id = 10, Name = "Pepperoni", Price = 9.50m },
-                new Pizza { Id = 11, Name = "Quattro Formaggi", Price = 10.50m },
-                new Pizza { Id = 12, Name = "Salmone", Price = 12.00m },
-                new Pizza { Id = 13, Name = "Seafood TomatoSauce/Pesto Sauce", Price = 12.50m },
-                new Pizza { Id = 14, Name = "Spinach /Ham/Mushroom", Price = 10.00m },
-                new Pizza { Id = 15, Name = "Sweet corn", Price = 9.50m },
-                new Pizza { Id = 16, Name = "Tonno", Price = 9.50m },
-                new Pizza { Id = 17, Name = "Truffle & Mushroom", Price = 8.00m }
+                new Pizza { Id = 1, Name = "Diavola", Price = 280m },
+                new Pizza { Id = 2, Name = "Hawaii", Price = 259m },
+                new Pizza { Id = 3, Name = "Margherita", Price = 229m },
+                new Pizza { Id = 4, Name = "Mexican Hawaii", Price = 269m },
+                new Pizza { Id = 5, Name = "Mexican Pepperoni", Price = 279m },
+                new Pizza { Id = 6, Name = "Napoli", Price = 290m },
+                new Pizza { Id = 7, Name = "Nutella Banana", Price = 259m },
+                new Pizza { Id = 8, Name = "Nutella Strawberry", Price = 299m },
+                new Pizza { Id = 9, Name = "Parma Ham & Rocket", Price = 399m },
+                new Pizza { Id = 10, Name = "Pepperoni", Price = 269m },
+                new Pizza { Id = 11, Name = "Quattro Formaggi", Price = 299m },
+                new Pizza { Id = 12, Name = "Salmone", Price = 299m },
+                new Pizza { Id = 13, Name = "Seafood TomatoSauce/Pesto Sauce", Price = 369m },
+                new Pizza { Id = 14, Name = "Spinach /Ham/Mushroom", Price = 269m },
+                new Pizza { Id = 15, Name = "Sweet corn", Price = 249m },
+                new Pizza { Id = 16, Name = "Tonno", Price = 269m },
+                new Pizza { Id = 17, Name = "Truffle & Mushroom", Price = 349m }
             );
         }
 

@@ -27,14 +27,14 @@
 
         <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Padding="5">
             <StackPanel>
-                <TextBlock Text="Menü" FontSize="16" FontWeight="Bold"/>
+                <TextBlock Text="Menu" FontSize="16" FontWeight="Bold"/>
                 <ListView ItemsSource="{Binding Menu}" 
                           SelectedItem="{Binding SelectedPizzaFromMenu}"
                           Height="400">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Pizza" DisplayMemberBinding="{Binding Name}" Width="150"/>
-                            <GridViewColumn Header="Preis" DisplayMemberBinding="{Binding Price, StringFormat=C}" Width="70"/>
+                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price, StringFormat=C}" Width="70"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -42,18 +42,18 @@
         </Border>
 
         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="5">
-            <Button Content="-> Hinzufügen" 
+            <Button Content="-> Add" 
                     Command="{Binding AddToCartCommand}" 
                     Width="100" Margin="5"/>
 
-            <Button Content="&lt;- Entfernen" 
+            <Button Content="&lt;- Remove" 
                     Command="{Binding RemoveFromCartCommand}" 
                     Width="100" Margin="5"/>
         </StackPanel>
 
         <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1" Padding="5">
             <StackPanel>
-                <TextBlock Text="Warenkorb" FontSize="16" FontWeight="Bold"/>
+                <TextBlock Text="Cart" FontSize="16" FontWeight="Bold"/>
 
                 <ListView ItemsSource="{Binding Cart}" 
                           SelectedItem="{Binding SelectedCartItem}"
@@ -61,14 +61,14 @@
                           Height="300"
                           Margin="0,0,0,10"/>
 
-                <TextBlock Text="Bemerkung (Gesamt):"/>
+                <TextBlock Text="Note (Total):"/>
                 <TextBox Text="{Binding CustomerNote, UpdateSourceTrigger=PropertyChanged}" 
                          Height="40" TextWrapping="Wrap" Margin="0,0,0,10"/>
 
-                <TextBlock Text="{Binding TotalPrice, StringFormat='Gesamt: {0:C}'}" 
+                <TextBlock Text="{Binding TotalPrice, StringFormat='Total: {0:C}'}" 
                          FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"/>
 
-                <Button Content="Bestellung abschicken" 
+                <Button Content="Submit Order" 
                         Command="{Binding SubmitOrderCommand}"
                         Background="LightGreen" Height="40" Margin="0,10,0,0"/>
             </StackPanel>
@@ -77,14 +77,15 @@
         <Border Grid.Column="3" BorderBrush="DarkBlue" BorderThickness="2" Padding="5" Margin="10,0,0,0">
             <StackPanel DataContext="{Binding SelectedCartItem}">
 
-                <TextBlock Text="Pizza im Warenkorb auswählen, um Zutaten anzupassen."
+                <TextBlock Text="Select a pizza in the cart to customize ingredients."
                            TextWrapping="Wrap"
                            Visibility="{Binding RelativeSource={RelativeSource Self}, Path=DataContext, Converter={StaticResource NullToVisibilityConverter}}"/>
 
                 <StackPanel Visibility="{Binding RelativeSource={RelativeSource Self}, Path=DataContext, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Invert}">
 
                     <TextBlock Text="{Binding BasePizza.Name}" FontSize="16" FontWeight="Bold" Foreground="DarkBlue"/>
-                    <TextBlock Text="Kundenwünsche (Zutaten entfernen):" Margin="0,10,0,5"/>
+
+                    <TextBlock Text="Customer Wishes (Remove Ingredients):" Margin="0,10,0,5"/>
 
                     <ScrollViewer Height="350" VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding CustomizableIngredients}">

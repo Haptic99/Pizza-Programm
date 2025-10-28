@@ -16,72 +16,73 @@
     <UserControl.Resources>
         <converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
     </UserControl.Resources>
-    
+
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/> <ColumnDefinition Width="*"/>
-    <ColumnDefinition Width="200"/>
-    </Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
 
-    <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Padding="5">
-        <StackPanel>
-            <TextBlock Text="Neue Pizza erstellen" FontWeight="Bold"/>
-            <Label Content="Name:"/>
-            <TextBox Text="{Binding NewPizzaName, UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Content="Preis:"/>
-            <TextBox Text="{Binding NewPizzaPrice, UpdateSourceTrigger=PropertyChanged}"/>
+        <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Padding="5">
+            <StackPanel>
+                <TextBlock Text="Create New Pizza" FontWeight="Bold"/>
+                <Label Content="Name:"/>
+                <TextBox Text="{Binding NewPizzaName, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Price:"/>
+                <TextBox Text="{Binding NewPizzaPrice, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Button Content="Pizza hinzufügen" Command="{Binding AddPizzaCommand}" Margin="0,10"/>
+                <Button Content="Add Pizza" Command="{Binding AddPizzaCommand}" Margin="0,10"/>
 
-            <Separator Margin="0,10"/>
+                <Separator Margin="0,10"/>
 
-            <TextBlock Text="Pizzen verwalten" FontWeight="Bold"/>
-            <ListView ItemsSource="{Binding Pizzas}" 
+                <TextBlock Text="Manage Pizzas" FontWeight="Bold"/>
+                <ListView ItemsSource="{Binding Pizzas}" 
                           SelectedItem="{Binding SelectedPizza}"
                           Height="250">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
-                        <GridViewColumn Header="Preis" DisplayMemberBinding="{Binding Price, StringFormat=C}" Width="70"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Button Content="Auswahl löschen" Command="{Binding DeletePizzaCommand}" Background="Tomato" Margin="0,5"/>
-        </StackPanel>
-    </Border>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price, StringFormat=C}" Width="70"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button Content="Delete Selection" Command="{Binding DeletePizzaCommand}" Background="Tomato" Margin="0,5"/>
+            </StackPanel>
+        </Border>
 
-    <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Padding="5" Margin="10,0,10,0">
-        <StackPanel>
-            <TextBlock Text="Zutaten für:" FontWeight="Bold"/>
-            <TextBlock Text="{Binding SelectedPizza.Name, FallbackValue='(Keine Pizza ausgewählt)'}" 
+        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Padding="5" Margin="10,0,10,0">
+            <StackPanel>
+                <TextBlock Text="Ingredients for:" FontWeight="Bold"/>
+                <TextBlock Text="{Binding SelectedPizza.Name, FallbackValue='(No pizza selected)'}" 
                            FontSize="16" Foreground="DarkBlue" Margin="0,5,0,10"/>
 
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350">
-                <ItemsControl ItemsSource="{Binding IngredientSelections}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <CheckBox Content="{Binding Ingredient.Name}" 
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="350">
+                    <ItemsControl ItemsSource="{Binding IngredientSelections}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Ingredient.Name}" 
                                           IsChecked="{Binding IsSelected}" 
                                           Margin="5"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
 
-            <Button Content="Zutaten speichern" 
+                <Button Content="Save Ingredients" 
                         Command="{Binding SavePizzaIngredientsCommand}" 
                         IsEnabled="{Binding SelectedPizza, Converter={StaticResource NullToBooleanConverter}}" 
                         Margin="0,10,0,0"
                         Background="LightGreen"/>
-        </StackPanel>
-    </Border>
+            </StackPanel>
+        </Border>
 
-    <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1" Padding="5">
-        <StackPanel>
-            <TextBlock Text="Preisdetails (Beispiel)" FontWeight="Bold"/>
-            <TextBlock Text="Hier könnte eine Preiskalkulation basierend auf den Zutaten stehen." TextWrapping="Wrap"/>
-        </StackPanel>
-    </Border>
+        <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1" Padding="5">
+            <StackPanel>
+                <TextBlock Text="Price Details (Example)" FontWeight="Bold"/>
+                <TextBlock Text="A price calculation based on ingredients could go here." TextWrapping="Wrap"/>
+            </StackPanel>
+        </Border>
 
     </Grid>
 </UserControl>

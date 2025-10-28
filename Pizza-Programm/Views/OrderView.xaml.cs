@@ -3,7 +3,7 @@ using Pizza_Programm.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.Views
 {
     public partial class OrderView : UserControl

@@ -1,12 +1,12 @@
 ﻿// /Models/OrderStatus.cs
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.Models
 {
     public enum OrderStatus
     {
-        Pending,   // Offen (wartet in der Küche)
-        Completed, // Erledigt
-        Cancelled  // Storniert
+        Pending,   // Pending (waiting in the kitchen)
+        Completed, // Completed
+        Cancelled  // Cancelled
     }
 }

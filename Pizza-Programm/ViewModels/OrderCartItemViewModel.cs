@@ -4,7 +4,7 @@ using Pizza_Programm.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.ViewModels
 {
     public partial class OrderCartItemViewModel : ObservableObject
@@ -49,7 +49,7 @@ namespace Pizza_Programm.ViewModels
 
             if (removed.Any())
             {
-                DisplayName = $"{BasePizza.Name} (ohne {string.Join(", ", removed)})";
+                DisplayName = $"{BasePizza.Name} (without {string.Join(", ", removed)})";
             }
             else
             {
@@ -63,7 +63,7 @@ namespace Pizza_Programm.ViewModels
 
             var customizations = CustomizableIngredients
                 .Where(i => !i.IsSelected)
-                .Select(i => $"Ohne {i.Ingredient.Name}");
+                .Select(i => $"Without {i.Ingredient.Name}");
 
             return new OrderItem
             {

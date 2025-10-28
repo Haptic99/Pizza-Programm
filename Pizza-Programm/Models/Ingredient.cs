@@ -1,11 +1,11 @@
 ﻿// /Models/Ingredient.cs
 using CommunityToolkit.Mvvm.ComponentModel;
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.Models
 {
-    // Wir erben von ObservableObject, damit die GUI auf Änderungen reagieren kann
-    // (z.B. wenn sich der Lagerbestand ändert)
+    // We inherit from ObservableObject so the GUI can react to changes
+    // (e.g., if the stock level changes)
     public partial class Ingredient : ObservableObject
     {
         [ObservableProperty]
@@ -15,6 +15,6 @@ namespace Pizza_Programm.Models
         private string _name;
 
         [ObservableProperty]
-        private int _stockLevel; // Bonus: Lagerbestand
+        private int _stockLevel; // Bonus: Stock level
     }
 }

@@ -2,17 +2,17 @@
 using Pizza_Programm.Models;
 using Microsoft.EntityFrameworkCore;
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.Data
 {
     public class PizzaDbContext : DbContext
     {
-        // Tabellen-Definitionen
+        // Table Definitions
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<PizzaIngredient> PizzaIngredients { get; set; }
 
-        // --- NEU ---
+        // --- NEW ---
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         // -----------
@@ -21,14 +21,14 @@ namespace Pizza_Programm.Data
         {
             optionsBuilder.UseSqlite("Data Source=pizzashop.db");
 
-            // (Optional, aber gut für die Entwicklung, um die DB-Abfragen zu sehen)
+            // (Optional, but good for development to see the DB queries)
             // .EnableSensitiveDataLogging()
             // .LogTo(System.Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // --- Bestehender Code (Relationen) ---
+            // --- Existing Code (Relations) ---
             modelBuilder.Entity<PizzaIngredient>()
                 .HasKey(pi => new { pi.PizzaId, pi.IngredientId });
 
@@ -42,7 +42,7 @@ namespace Pizza_Programm.Data
                 .WithMany()
                 .HasForeignKey(pi => pi.IngredientId);
 
-            // --- NEU (Relationen) ---
+            // --- NEW (Relations) ---
             modelBuilder.Entity<Order>()
                 .Property(o => o.Status)
                 .HasConversion<string>();
@@ -52,7 +52,7 @@ namespace Pizza_Programm.Data
                 .WithOne(oi => oi.Order)
                 .HasForeignKey(oi => oi.OrderId);
 
-            // --- AUFGERÄUMT: Seed-Logik wird ausgelagert ---
+            // --- CLEANED UP: Seed logic is outsourced ---
             DataSeeder.Seed(modelBuilder);
         }
     }

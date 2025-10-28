@@ -1,5 +1,4 @@
-﻿<!-- MainWindow.xaml -->
-<Window x:Class="Pizza_Programm.MainWindow"
+﻿<Window x:Class="Pizza_Programm.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,19 +9,19 @@
         Title="Pizza-Shop Management" Height="600" Width="900">
     <Grid>
         <TabControl>
-            <TabItem Header="Zutaten verwalten">
+            <TabItem Header="Manage Ingredients">
                 <views:IngredientManagementView/>
             </TabItem>
 
-            <TabItem Header="Pizzen verwalten">
+            <TabItem Header="Manage Pizzas">
                 <views:PizzaManagementView/>
             </TabItem>
 
-            <TabItem Header="Bestellungen (Kasse)">
+            <TabItem Header="Orders (Cashier)">
                 <views:OrderView/>
             </TabItem>
 
-            <TabItem Header="Offene Bestellungen (Küche)">
+            <TabItem Header="Pending Orders (Kitchen)">
                 <views:KitchenView/>
             </TabItem>
         </TabControl>

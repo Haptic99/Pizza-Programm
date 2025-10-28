@@ -24,41 +24,37 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Header -->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBlock Text="🍕 Offene Bestellungen (Küche)" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
-            <Button Content="🔄 Aktualisieren" 
+            <TextBlock Text="🍕 Pending Orders (Kitchen)" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
+            <Button Content="🔄 Refresh" 
                     Command="{Binding LoadPendingOrdersCommand}" 
                     Margin="20,0,0,0" 
                     Padding="10,5"/>
         </StackPanel>
 
-        <!-- Bestellungsliste -->
         <Border Grid.Row="1" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Padding="5" Margin="0,0,10,0">
             <StackPanel>
-                <TextBlock Text="Warteschlange:" FontWeight="Bold" Margin="0,0,0,5"/>
+                <TextBlock Text="Queue:" FontWeight="Bold" Margin="0,0,0,5"/>
 
                 <ListView ItemsSource="{Binding PendingOrders}" 
                           SelectedItem="{Binding SelectedOrder}"
                           Height="350">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Best.-Nr." DisplayMemberBinding="{Binding Id}" Width="70"/>
-                            <GridViewColumn Header="Uhrzeit" DisplayMemberBinding="{Binding OrderTime, StringFormat='HH:mm:ss'}" Width="80"/>
-                            <GridViewColumn Header="Pizzen" DisplayMemberBinding="{Binding OrderItems.Count}" Width="60"/>
-                            <GridViewColumn Header="Gesamt" DisplayMemberBinding="{Binding TotalPrice, StringFormat=C}" Width="70"/>
+                            <GridViewColumn Header="Order No." DisplayMemberBinding="{Binding Id}" Width="70"/>
+                            <GridViewColumn Header="Time" DisplayMemberBinding="{Binding OrderTime, StringFormat='HH:mm:ss'}" Width="80"/>
+                            <GridViewColumn Header="Pizzas" DisplayMemberBinding="{Binding OrderItems.Count}" Width="60"/>
+                            <GridViewColumn Header="Total" DisplayMemberBinding="{Binding TotalPrice, StringFormat=C}" Width="70"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </StackPanel>
         </Border>
 
-        <!-- Bestelldetails -->
         <Border Grid.Row="1" Grid.Column="1" BorderBrush="DarkBlue" BorderThickness="2" Padding="10">
             <StackPanel DataContext="{Binding SelectedOrder}">
 
-                <!-- Platzhalter wenn nichts ausgewählt -->
-                <TextBlock Text="Wähle eine Bestellung aus der Liste aus, um Details zu sehen."
+                <TextBlock Text="Select an order from the list to see details."
                            TextWrapping="Wrap"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
@@ -76,7 +72,6 @@
                     </TextBlock.Style>
                 </TextBlock>
 
-                <!-- Details wenn Bestellung ausgewählt -->
                 <StackPanel>
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
@@ -89,17 +84,17 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <TextBlock Text="{Binding Id, StringFormat='Bestellung #{0}'}" 
+                    <TextBlock Text="{Binding Id, StringFormat='Order #{0}'}" 
                                FontSize="18" 
                                FontWeight="Bold" 
                                Foreground="DarkBlue"/>
 
-                    <TextBlock Text="{Binding OrderTime, StringFormat='Bestellt um: {0:HH:mm:ss}'}" 
+                    <TextBlock Text="{Binding OrderTime, StringFormat='Ordered at: {0:HH:mm:ss}'}" 
                                Margin="0,5,0,0"/>
 
                     <Separator Margin="0,10"/>
 
-                    <TextBlock Text="Bestellte Pizzen:" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBlock Text="Ordered Pizzas:" FontWeight="Bold" Margin="0,0,0,5"/>
 
                     <ScrollViewer Height="200" VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding OrderItems}">
@@ -137,7 +132,7 @@
 
                     <Separator Margin="0,10"/>
 
-                    <TextBlock Text="Bemerkung:" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBlock Text="Note:" FontWeight="Bold" Margin="0,0,0,5"/>
                     <TextBlock Text="{Binding CustomerNote}" 
                                TextWrapping="Wrap"
                                FontStyle="Italic">
@@ -146,7 +141,7 @@
                                 <Setter Property="Text" Value="{Binding CustomerNote}"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding CustomerNote}" Value="">
-                                        <Setter Property="Text" Value="(keine Bemerkung)"/>
+                                        <Setter Property="Text" Value="(no note)"/>
                                         <Setter Property="Foreground" Value="Gray"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -156,7 +151,7 @@
 
                     <Separator Margin="0,10"/>
 
-                    <TextBlock Text="{Binding TotalPrice, StringFormat='Gesamtpreis: {0:C}'}" 
+                    <TextBlock Text="{Binding TotalPrice, StringFormat='Total Price: {0:C}'}" 
                                FontSize="16" 
                                FontWeight="Bold" 
                                Foreground="Green"/>
@@ -164,18 +159,17 @@
             </StackPanel>
         </Border>
 
-        <!-- Aktions-Buttons -->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" 
                     Orientation="Horizontal" 
                     HorizontalAlignment="Right" 
                     Margin="0,10,0,0">
-            <Button Content="✅ Bestellung erledigt" 
+            <Button Content="✅ Order Completed" 
                     Command="{Binding CompleteOrderCommand}" 
                     Background="LightGreen" 
                     Padding="15,8" 
                     Margin="0,0,10,0"/>
 
-            <Button Content="❌ Bestellung stornieren" 
+            <Button Content="❌ Cancel Order" 
                     Command="{Binding CancelOrderCommand}" 
                     Background="LightCoral" 
                     Padding="15,8"/>

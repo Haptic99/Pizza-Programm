@@ -29,7 +29,7 @@ namespace Pizza_Programm.ViewModels
             {
                 await context.Database.EnsureCreatedAsync();
 
-                // Nur offene Bestellungen laden
+                // Load only pending orders
                 var pendingOrders = await context.Orders
                     .Include(o => o.OrderItems)
                     .Where(o => o.Status == OrderStatus.Pending)
@@ -61,7 +61,7 @@ namespace Pizza_Programm.ViewModels
             PendingOrders.Remove(SelectedOrder);
             SelectedOrder = null;
 
-            MessageBox.Show("Bestellung wurde als erledigt markiert!", "Erfolg", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Order has been marked as completed!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private bool CanCompleteOrder() => SelectedOrder != null;
 
@@ -71,8 +71,8 @@ namespace Pizza_Programm.ViewModels
             if (SelectedOrder == null) return;
 
             var result = MessageBox.Show(
-                $"Soll Bestellung #{SelectedOrder.Id} wirklich storniert werden?",
-                "Stornieren bestätigen",
+                $"Should order #{SelectedOrder.Id} really be cancelled?",
+                "Confirm Cancellation",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning);
 
@@ -91,7 +91,7 @@ namespace Pizza_Programm.ViewModels
             PendingOrders.Remove(SelectedOrder);
             SelectedOrder = null;
 
-            MessageBox.Show("Bestellung wurde storniert.", "Storniert", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Order was cancelled.", "Cancelled", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private bool CanCancelOrder() => SelectedOrder != null;
     }

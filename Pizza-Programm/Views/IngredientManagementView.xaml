@@ -19,12 +19,12 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Margin="0,0,10,0">
-            <Label Content="Neue Zutat:"/>
+            <Label Content="New Ingredient:"/>
             <TextBox Text="{Binding NewIngredientName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
 
-            <Button Content="Hinzufügen" Command="{Binding AddIngredientCommand}" Margin="0,0,0,20"/>
+            <Button Content="Add" Command="{Binding AddIngredientCommand}" Margin="0,0,0,20"/>
 
-            <Button Content="Auswahl löschen" Command="{Binding DeleteIngredientCommand}" Background="Tomato"/>
+            <Button Content="Delete Selection" Command="{Binding DeleteIngredientCommand}" Background="Tomato"/>
         </StackPanel>
 
         <ListView Grid.Column="1" 
@@ -34,7 +34,7 @@
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="50"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="200"/>
-                    <GridViewColumn Header="Lager" DisplayMemberBinding="{Binding StockLevel}" Width="100"/>
+                    <GridViewColumn Header="Stock" DisplayMemberBinding="{Binding StockLevel}" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>

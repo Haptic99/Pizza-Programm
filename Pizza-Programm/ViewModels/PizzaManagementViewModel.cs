@@ -9,23 +9,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.ViewModels
 {
     public partial class PizzaManagementViewModel : ObservableObject
     {
-        // Listen für die GUI
+        // Lists for the GUI
         public ObservableCollection<Pizza> Pizzas { get; } = new();
         public ObservableCollection<IngredientSelection> IngredientSelections { get; } = new();
 
-        // Eigenschaften für neue Pizzen
+        // Properties for new pizzas
         [ObservableProperty]
         private string _newPizzaName;
 
         [ObservableProperty]
         private decimal _newPizzaPrice;
 
-        // Die aktuell im UI ausgewählte Pizza
+        // The currently selected pizza in the UI
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePizzaCommand))]
         [NotifyCanExecuteChangedFor(nameof(SavePizzaIngredientsCommand))]
@@ -90,7 +90,7 @@ namespace Pizza_Programm.ViewModels
         {
             if (string.IsNullOrWhiteSpace(NewPizzaName) || NewPizzaPrice <= 0)
             {
-                MessageBox.Show("Bitte einen gültigen Namen und Preis eingeben.", "Fehler");
+                MessageBox.Show("Please enter a valid name and price.", "Error");
                 return;
             }
 
@@ -112,8 +112,8 @@ namespace Pizza_Programm.ViewModels
         {
             if (SelectedPizza == null) return;
 
-            var result = MessageBox.Show($"Soll die Pizza '{SelectedPizza.Name}' wirklich gelöscht werden?",
-                "Löschen bestätigen", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var result = MessageBox.Show($"Should the pizza '{SelectedPizza.Name}' really be deleted?",
+                "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (result == MessageBoxResult.No) return;
 
@@ -162,7 +162,7 @@ namespace Pizza_Programm.ViewModels
                 OnSelectedPizzaChanged(SelectedPizza);
             }
 
-            MessageBox.Show("Zutaten gespeichert!", "Erfolg");
+            MessageBox.Show("Ingredients saved!", "Success");
         }
         private bool CanSavePizzaIngredients() => SelectedPizza != null;
     }

@@ -1,10 +1,10 @@
 ﻿// /Models/OrderItem.cs
 using CommunityToolkit.Mvvm.ComponentModel;
 
-// KORRIGIERT: Namespace hinzugefügt
+// CORRECTED: Namespace added
 namespace Pizza_Programm.Models
 {
-    // Dies ist ein Schnappschuss einer Pizza zum Zeitpunkt der Bestellung.
+    // This is a snapshot of a pizza at the time of ordering.
     public partial class OrderItem : ObservableObject
     {
         [ObservableProperty]
@@ -17,12 +17,12 @@ namespace Pizza_Programm.Models
         private Order _order;
 
         [ObservableProperty]
-        private string _pizzaName; // Name als Kopie
+        private string _pizzaName; // Name as a copy
 
         [ObservableProperty]
-        private decimal _priceAtOrder; // Preis als Kopie
+        private decimal _priceAtOrder; // Price as a copy
 
-        // Hier speichern wir Kundenwünsche, z.B. "Ohne Oliven, Extra Käse"
+        // Here we save customer wishes, e.g., "Without Olives, Extra Cheese"
         [ObservableProperty]
         private string _customizations;
     }
